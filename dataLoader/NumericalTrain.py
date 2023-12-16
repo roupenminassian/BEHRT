@@ -39,8 +39,9 @@ class NTLoader(Dataset):
 
     def __getitem__(self, index):
         patient_data = self.normalized_data.iloc[index]
-        feature_sequences = [self.pad_sequence(patient_data[feature]) for feature in self.features]
-        features_tensor = torch.tensor(feature_sequences, dtype=torch.float)
+        feature_sequences = [self.pad_sequence(patient_data[feature], 50) for feature in self.features]
+        # Ensure the features tensor is of shape (batch_size, sequence_length, num_features)
+        features_tensor = torch.tensor(feature_sequences, dtype=torch.float).transpose(0, 1)
 
         label_sequence = self.pad_sequence(patient_data[self.label_col], pad_value=0)
 
