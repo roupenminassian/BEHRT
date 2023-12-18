@@ -68,9 +68,9 @@ class NTLoader(Dataset):
         labels = [0 if pd.isna(x) else x for x in labels]
 
         # Debugging section for labels and normalized features
-        print("Original label sequence:", self.dataframe[self.label_col].iloc[index])
-        print("Processed label sequence before tensor conversion:", labels)
-        print("Normalized features:", features)
+        #print("Original label sequence:", self.dataframe[self.label_col].iloc[index])
+        #print("Processed label sequence before tensor conversion:", labels)
+        #print("Normalized features:", features)
         
         labels_tensor = torch.tensor(labels, dtype=torch.long)
 

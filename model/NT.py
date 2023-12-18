@@ -44,7 +44,7 @@ class BertForSequenceClassification(Bert.modeling.BertPreTrainedModel):
         logits = self.classifier(sequence_output).squeeze(-1)  # Squeeze to remove last dimension
 
         if labels is not None:
-            loss_fct = nn.BCEWithLogitsLoss()
+            loss_fct = nn.BCEWithLogitsLoss(pos_weight=torch.tensor([25]))
             loss = loss_fct(logits, labels.float())
             return loss, logits
         else:
